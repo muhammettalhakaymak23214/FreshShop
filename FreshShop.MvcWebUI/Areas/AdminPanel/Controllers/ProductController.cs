@@ -20,6 +20,7 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
 
         public IActionResult Index()
         {
+            //dsfdsfsdfdsddgfdgfdgfdg
             return View();
         }
 

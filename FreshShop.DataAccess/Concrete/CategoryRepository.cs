@@ -11,5 +11,6 @@ namespace FreshShop.DataAccess.Concrete
 {
     public class CategoryRepository : RepositoryBase<Category, FreshShopDbContext>, ICategoryRepository
     {
+        //dsfsfdsf
     }
 }
