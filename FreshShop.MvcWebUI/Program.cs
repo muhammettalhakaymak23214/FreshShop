@@ -82,6 +82,12 @@ app.MapAreaControllerRoute(
     pattern: "new-product",
     defaults: new { controller = "Product", action = "New" }
     );
+app.MapAreaControllerRoute(
+    name: "adminProductPhotoUpload",
+    areaName: "AdminPanel",
+    pattern: "product-photo-upload",
+    defaults: new { controller = "Product", action = "PhotoUpload" }
+    );
 
 app.MapControllerRoute(
     name: "default",

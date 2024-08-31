@@ -4,7 +4,52 @@
     Layout = "~/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
 }
 
-<h1>New</h1>
+@model List<SelectListItem>
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnSave").click(function () {
+                var vm = {
+                    ProductName: $("#txtProductName").val(),
+                    Price: $("#txtPrice").val(),
+                    Discount: $("#txtDiscount").val(),
+                    CategoryId: $("#ddlCategories").val(),
+                    ShortDescription: $("#textShortDescription")text()
+                };
+
+                $.ajax({
+                    url:"new-product",
+                    method:"post",
+                    datatype:"json",
+                    data: {vm:vm},
+                    success:function (response){
+                        if(response.IsOk){
+                            var formData = new FormData();
+                            var files = $("#fuPhoto")[0].files;
+                            formData.append("photo",files);
+
+                            $.ajax({
+                                url:"/product-photo-upload",
+                                method:"post",
+                                data:formData,
+                                contentType: false,
+                                processData:false
+                            });
+                        }
+                    }
+                });
+            });
+
+        });
+            
+        
+
+    </script>
+}
+
+
 
 <div class="col-md-12">
     <div class="card card-primary">
@@ -33,7 +78,7 @@
                 </div>
                 <div class="form-group">
                     <label>Kategorisi</label>
-                    <select class="form-control"></select>
+                    <select id="ddlCategories" class="form-control" asp-items="Model" > </select>
                 </div>
                 <div class="form-group">
                     <label>Fotoğraflar</label>
