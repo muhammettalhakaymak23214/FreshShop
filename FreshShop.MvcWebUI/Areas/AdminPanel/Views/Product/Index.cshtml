@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Sistemde Kayıtlı Ürünler</h3>
+            <br />
+            <a href="/new-product" class="btn btn-warning">Yeni Ürün</a>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+            @* buraya kayılı ürün gelecek *@
+            @* <table id="tblManagers" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Ad Soyad</th>
+                        <th>Email</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.PhotoPath" style="width:80px;" />
+                            </td>
+                            <td>@item.FullName</td>
+                            <td>@item.Email</td>
+                            <td>
+                                <a href="#" class="btn btn-warning">Düzenle</a>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger">Sil</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table> *@
+        </div>
+        <!-- /.card-body -->
+    </div>
+</div>
+

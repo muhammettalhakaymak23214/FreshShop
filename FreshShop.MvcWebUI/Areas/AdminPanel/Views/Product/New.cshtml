@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "New";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
+}
+
+<h1>New</h1>
+
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Yeni Ürün Kayıt Formu</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Ürün Adı</label>
+                    <input type="text" class="form-control" id="txtProductName" placeholder="Ürün Adı">
+                </div>
+                <div class="form-group">
+                    <label>Fiyat</label>
+                    <input type="text" class="form-control" id="txtPrice" placeholder="Fiyat Giriniz">
+                </div>
+                <div class="form-group">
+                    <label>İndirim</label>
+                    <input type="text" class="form-control" id="txtDiscount" placeholder="İndirim Giriniz">
+                </div>
+                <div class="form-group">
+                    <label>Ürün Açıklması</label>
+                    <textarea id="txtShortDescription" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Kategorisi</label>
+                    <select class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label>Fotoğraflar</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="fuPhoto" multiple>
+                            <label class="custom-file-label">Fotoğraf Seç</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" id="btnSave" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
