@@ -12,6 +12,6 @@ namespace FreshShop.Model.ViewModel
         public decimal Price { get; set; }
         public int Discount { get; set; }
         public int CategoryId { get; set; }
-        public string? ShortDescription { get; set; }
+        public string? ShortDesciription { get; set; }
     }
 }

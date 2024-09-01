@@ -50,20 +50,22 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
             Product p = new Product();
 
             p.CategoryId = vm.CategoryId;
-            p.ShortDescription= vm.ShortDescription;
+            p.ShortDesciription = vm.ShortDesciription;
             p.Price = vm.Price; 
             p.ProductName = vm.ProductName;
             p.Discount = vm.Discount;
 
             _productBs.Insert(p);
 
-            return Json(new {IsOk = true , ProductId=p.Id});
+            return Json(new {isOk = true , productId=p.Id});
         }
 
         [HttpPost]
         public IActionResult PhotoUpload() 
         {
             IFormFileCollection files  = Request.Form.Files;
+
+            var productId = Convert.ToInt32(Request.Form["prdId"].ToString());
 
             if (files.Count>0)
             {
@@ -77,11 +79,18 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
                     {
                         file.CopyTo(stream);
                     }
+
+                    ProductPhoto photo = new ProductPhoto();
+                    photo.ProductId = productId;
+                    photo.PhotoPath = "/AdminPanelContent/images/ProductPhotos" + randomFileName;
+
+                    _productPhotoBs.Insert(photo);
                     
                 }
+                return Json(new { IsOk=true});
             }
 
-            return Json(new {});
+            return Json(new {IsOk=false});
         }
 
     }

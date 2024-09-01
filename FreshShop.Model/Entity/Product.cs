@@ -16,7 +16,7 @@ namespace FreshShop.Model.Entity
         public string? ProductName { get; set; }
         public decimal? Price { get; set; }
         public int? Discount { get; set; }
-        public string? ShortDescription { get; set; }
+        public string? ShortDesciription { get; set; }
         public int? CategoryId { get; set; }
 
         public virtual Category? Category { get; set; }

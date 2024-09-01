@@ -9,40 +9,60 @@
 
 @section scripts{
     <script>
-        $(document).ready(function () {
-            $("#btnSave").click(function () {
-                var vm = {
-                    ProductName: $("#txtProductName").val(),
-                    Price: $("#txtPrice").val(),
-                    Discount: $("#txtDiscount").val(),
-                    CategoryId: $("#ddlCategories").val(),
-                    ShortDescription: $("#textShortDescription")text()
-                };
+        try {
+            $(document).ready(function () {
+                $("#btnSave").click(function () {
+                    var vm = {
+                        ProductName: $("#txtProductName").val(),
+                        Price: $("#txtPrice").val(),
+                        Discount: $("#txtDiscount").val(),
+                        CategoryId: $("#ddlCategories").val(),
+                        ShortDesciription: $("#txtShortDesciription").val()
+                    };
 
-                $.ajax({
-                    url:"new-product",
-                    method:"post",
-                    datatype:"json",
-                    data: {vm:vm},
-                    success:function (response){
-                        if(response.IsOk){
-                            var formData = new FormData();
-                            var files = $("#fuPhoto")[0].files;
-                            formData.append("photo",files);
+                    $.ajax({
+                        url: "/new-product",
+                        method: "post",
+                        datatype: "json",
+                        data: { vm: vm },
+                        success: function (response) {
+                            if (response.isOk) {
+                                var formData = new FormData();
+                                var files = $("#fuPhoto")[0].files;
+                                $.each(files, function (i, file) {
+                                    formData.append("image[]", file);
+                                });
 
-                            $.ajax({
-                                url:"/product-photo-upload",
-                                method:"post",
-                                data:formData,
-                                contentType: false,
-                                processData:false
-                            });
+                                formData.append("prdId", response.productId);
+
+                                $.ajax({
+                                    url: "/product-photo-upload",
+                                    method: "post",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (resp) {
+                                        if (resp.isOk) {
+                                            window.location.href = "/products";
+                                        }
+                                        else {
+                                            alert("Ürün kaydedildi.");
+                                        }
+                                    }
+                                });
+                                
+
+                            }
                         }
-                    }
+                    });
                 });
-            });
 
-        });
+
+            });
+        } catch (error) {
+            console.log(error)
+        }
+        
             
         
 
@@ -74,7 +94,7 @@
                 </div>
                 <div class="form-group">
                     <label>Ürün Açıklması</label>
-                    <textarea id="txtShortDescription" class="form-control"></textarea>
+                    <textarea id="txtShortDesciription" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Kategorisi</label>
