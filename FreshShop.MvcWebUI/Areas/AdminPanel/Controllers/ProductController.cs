@@ -25,7 +25,8 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
         public IActionResult Index()
         {
             //dsfdsfsdfdsddgfdgfdgfdg
-            return View();
+            List<Product> products = _productBs.GetAll();
+            return View(products);
         }
 
         [HttpGet]
