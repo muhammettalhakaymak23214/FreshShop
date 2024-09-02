@@ -28,6 +28,7 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
             ProductVm vm = new ProductVm();
             vm.Products = _productBs.GetAll();
             vm.ProductPhoto = _productPhotoBs.GetAll();
+            vm.Categories = _categoryBs.GetAll();
 
             return View(vm);
         }

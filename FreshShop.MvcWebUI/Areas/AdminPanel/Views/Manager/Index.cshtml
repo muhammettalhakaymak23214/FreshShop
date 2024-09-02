@@ -9,6 +9,22 @@
     <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <style>
+        th {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        td {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        .resimCol {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 }
 
 @section scripts{
@@ -279,6 +295,23 @@
                 }
             });
         });
+
+
+        $(document).on("click", "#deleteManager", function () {
+            var deleteManagerId = $(this).val();  // Tıklanan butonun value'sunu alır
+            $.ajax({
+                url: "/delete-manager",
+                method: "post",
+                datatype: "json",
+                data: { deleteManagerId: deleteManagerId },
+                success: function (response) {
+                    if (response.isOk) {
+                        alert(response.message);
+                        window.location.href = "/managers";
+                    }
+                }
+            });
+        });
     </script>
 }
 
@@ -292,7 +325,6 @@
             <br/>
             <a href="/new-manager" class="btn btn-warning">Yeni Yönetici</a>
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
             <table id="tblManagers" class="table table-bordered table-striped">
                 <thead>
@@ -308,8 +340,8 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
-                                <img src="@item.PhotoPath" style="width:80px;"/>
+                            <td class="resimCol">
+                                <img src="@item.PhotoPath" class="d-block w-100" alt="..." style="width: 100px; height: 100px; object-fit: cover;" />
                             </td>
                             <td>@item.FullName</td>
                             <td>@item.Email</td>
@@ -317,7 +349,7 @@
                                 <a href="#" class="btn btn-warning">Düzenle</a>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-danger">Sil</a>
+                                <button type="button" id="deleteManager" value="@item.Id" class="btn btn-danger">Sil</button>
                             </td>
                         </tr>
                     }
@@ -325,7 +357,6 @@
                 
             </table>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
 

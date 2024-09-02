@@ -146,5 +146,12 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
 
             return Json(new {  });
         }
+        [HttpPost]
+        public IActionResult Delete(String deleteManagerId)
+        {
+            Manager deletedManager =_managerBs.GetById(int.Parse(deleteManagerId));
+            _managerBs.Delete(deletedManager);
+            return Json(new { isOk = true, message = "Yönetici silindi."});
+        }
     }
 }

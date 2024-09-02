@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <style>
+        th{
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        td {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        .resimCol{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 }
 
 @section scripts {
@@ -292,15 +308,16 @@
             <br />
             <a href="/new-product" class="btn btn-warning">Yeni Ürün</a>
         </div>
-        <div class="card-body">
-            <table id="tblProducts" class="table table-bordered table-striped">
+        <div class="card-body" style="background-color: #000000; padding: 20px; border-radius: 10px;">
+            <table id="tblProducts" class="table table-bordered table-dark">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>Ürün Fotoğrafları</th>
                         <th>Ürün Adı</th>
+                        <th>Ürün Kategorisi</th>
+                        <th>Fiyat</th>
                         <th>İndirim</th>
                         <th>Ürün Açıklması</th>
-                        <th>Fiyat</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -310,25 +327,18 @@
                     {
                         int i = 0;
                         <tr>
-                            <td style="width: 100px; height: 100px;">
+                            <td class="resimCol">
                                 <div id="productCarousel-@item.Id" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     @foreach (var photo in Model.ProductPhoto)
                                     {
-                                        
                                         if ((item.Id == photo.ProductId))
                                         {
-                                            
-                                            
-                                        
                                             <div class="carousel-item @(i == 0 ? "active" : "")">
-                                           
                                                     <img src="@photo.PhotoPath" class="d-block w-100" alt="..." style="width: 100px; height: 100px; object-fit: cover;">
-                                        </div>
-                                            @*   <img src="@photo.PhotoPath" style="max-width: 30%; max-height: 30%; width: 30%; height: 30%;"> *@
+                                             </div>
                                             i++;
                                         }
-                                
                                     }
                                 </div>
                                     <a class="carousel-control-prev" href="#productCarousel-@item.Id" role="button" data-slide="prev">
@@ -341,10 +351,17 @@
                                 </a>
                                 </div>
                             </td>
-                            <td>@item.Id</td>
-                            <td>@item.Discount</td>
+                            <td style="text-align: center; vertical-align: middle;">@item.ProductName</td>
+                            @foreach (var category in Model.Categories)
+                            {
+                                if (category.Id==item.CategoryId)
+                                {
+                                    <td>@category.CategoryName</td>
+                                }
+                            }
+                            <td>@item.Price TL</td>
+                            <td>@item.Discount TL</td>
                             <td>@item.ShortDesciription</td>
-                            <td>@item.Price</td>
                             <td>
                                 <a href="#" class="btn btn-warning">Düzenle</a>
                             </td>
@@ -353,12 +370,9 @@
                             </td>
                         </tr>
                     }
-
                 </tbody>
-
             </table>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
 

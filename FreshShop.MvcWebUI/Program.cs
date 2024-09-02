@@ -59,6 +59,12 @@ app.MapAreaControllerRoute(
     defaults: new { controller = "Manager", action = "Index" }
     );
 app.MapAreaControllerRoute(
+    name: "adminDeleteManager",
+    areaName: "AdminPanel",
+    pattern: "delete-manager",
+    defaults: new { controller = "Manager", action = "Delete" }
+    );
+app.MapAreaControllerRoute(
     name: "adminNewManager",
     areaName: "AdminPanel",
     pattern: "new-manager",
