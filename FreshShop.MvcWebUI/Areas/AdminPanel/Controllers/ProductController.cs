@@ -27,6 +27,8 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
             //dsfdsfsdfdsddgfdgfdgfdg
             ProductVm vm = new ProductVm();
             vm.Products = _productBs.GetAll();
+            vm.ProductPhoto = _productPhotoBs.GetAll();
+
             return View(vm);
         }
 
@@ -84,7 +86,7 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
 
                     ProductPhoto photo = new ProductPhoto();
                     photo.ProductId = productId;
-                    photo.PhotoPath = "/AdminPanelContent/images/ProductPhotos" + randomFileName;
+                    photo.PhotoPath = "/AdminPanelContent/images/ProductPhotos/" + randomFileName;
 
                     _productPhotoBs.Insert(photo);
                     

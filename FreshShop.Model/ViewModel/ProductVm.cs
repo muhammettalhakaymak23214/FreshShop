@@ -10,5 +10,7 @@ namespace FreshShop.Model.ViewModel
     public class ProductVm
     {
         public List<Product> Products { get; set; }
+
+        public List<ProductPhoto> ProductPhoto { get; set; }
     }
 }
