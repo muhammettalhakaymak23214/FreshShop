@@ -1,4 +1,5 @@
 ﻿@using FreshShop.Model.Entity
+@using FreshShop.Model.ViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -282,7 +283,7 @@
     </script>
 }
 
-@model List<Product>
+@model ProductVm
 
 <div class="col-12">
     <div class="card">
@@ -306,10 +307,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var item in Model)
+                    @foreach(var item in Model.Products)
                     {
                         <tr>
-                            <td></td>
+                            <td>
+                                <!-- Ürünler için bir carousel (kaydırma) yapısı başlatılıyor. -->
+                                @* <div id="productCarousel-@item.ProductId" class="carousel slide" data-ride="carousel">
+                                    <!-- Carousel'in içeriği. Fotoğrafların burada yer alacağı belirtiliyor. -->
+                                    <div class="carousel-inner">
+                                        <!-- Ürün için fotoğraflar listeleniyor. -->
+                                        @foreach (var photo in item.Photos)
+                                        {
+                                            <!-- Fotoğrafın, listedeki ilk fotoğraf olup olmadığını kontrol ediliyor.
+                                                 Eğer bu ilk fotoğrafsa, "active" sınıfı ekleniyor, böylece carousel'de bu fotoğraf ilk olarak gösterilecek. -->
+                                            <div class="carousel-item @(photo == item.Photos.FirstOrDefault() ? "active" : "")">
+                                                <!-- Fotoğrafın URL'si kullanılarak bir img etiketi oluşturuluyor. -->
+                                                <img src="@photo.Url" class="d-block w-100" alt="...">
+                                            </div>
+                                        }
+                                    </div>
+                                    <!-- Önceki fotoğrafa geçiş butonu -->
+                                    <a class="carousel-control-prev" href="#productCarousel-@item.ProductId" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <!-- Sonraki fotoğrafa geçiş butonu -->
+                                    <a class="carousel-control-next" href="#productCarousel-@item.ProductId" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div> *@
+                            </td>
                             <td>@item.ProductName</td>
                             <td>@item.Discount</td>
                             <td>@item.ShortDesciription</td>
