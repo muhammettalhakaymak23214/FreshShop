@@ -87,7 +87,8 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
 
             if (manager != null)
             {
-                string message = $"Sayın {manager.FullName}. Şifreniz : <b>{manager.Password}</b>";
+                var mailModel = new MailModel();
+                string message = mailModel.GetMailModel(manager.FullName, manager.Password);
                 MailHelper.SendMail(vm.Email,"Şifreniz" , message);
                 return Json(new { IsOk = true, Message = "Şifreniz email hesabınıza gönderilmiştir." });
             }
