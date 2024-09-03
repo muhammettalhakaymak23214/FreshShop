@@ -59,6 +59,18 @@ app.MapAreaControllerRoute(
     defaults: new { controller = "Manager", action = "Index" }
     );
 app.MapAreaControllerRoute(
+    name: "adminUpdateManager",
+    areaName: "AdminPanel",
+    pattern: "update-manager",
+    defaults: new { controller = "Manager", action = "Update" }
+    );
+app.MapAreaControllerRoute(
+    name: "adminDeleteManagerPhoto",
+    areaName: "AdminPanel",
+    pattern: "delete-manager-photo",
+    defaults: new { controller = "Manager", action = "DeletePhoto" }
+    );
+app.MapAreaControllerRoute(
     name: "adminDeleteManager",
     areaName: "AdminPanel",
     pattern: "delete-manager",
@@ -75,6 +87,12 @@ app.MapAreaControllerRoute(
     areaName: "AdminPanel",
     pattern: "manager-photo-upload",
     defaults: new { controller = "Manager", action = "PhotoUpload" }
+    );
+app.MapAreaControllerRoute(
+    name: "adminManagerPhotoUpload2",
+    areaName: "AdminPanel",
+    pattern: "manager-photo-upload2",
+    defaults: new { controller = "Manager", action = "PhotoUpload2" }
     );
 app.MapAreaControllerRoute(
     name: "adminProducts",
