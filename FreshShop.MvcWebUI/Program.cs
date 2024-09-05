@@ -107,6 +107,12 @@ app.MapAreaControllerRoute(
     defaults: new { controller = "Product", action = "New" }
     );
 app.MapAreaControllerRoute(
+    name: "adminDeleteProduct",
+    areaName: "AdminPanel",
+    pattern: "delete-product",
+    defaults: new { controller = "Product", action = "Delete" }
+    );
+app.MapAreaControllerRoute(
     name: "adminProductPhotoUpload",
     areaName: "AdminPanel",
     pattern: "product-photo-upload",

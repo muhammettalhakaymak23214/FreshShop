@@ -97,6 +97,19 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
 
             return Json(new {IsOk=false});
         }
+        [HttpPost]
+        public IActionResult Delete(String deleteProductId)
+        {
+            Product deletedProduct = _productBs.GetById(int.Parse(deleteProductId));
+            List<ProductPhoto> photosOfProduct = _productPhotoBs.GetAll(p => p.ProductId == int.Parse(deleteProductId));
+            // DeletePhoto(deletedManager.PhotoPath);
+            foreach (var photo in photosOfProduct)
+            {
+                _productPhotoBs.Delete(photo);
+            }
+            _productBs.Delete(deletedProduct);
+            return Json(new { isOk = true, message = "Product silindi." });
+        }
 
     }
 }

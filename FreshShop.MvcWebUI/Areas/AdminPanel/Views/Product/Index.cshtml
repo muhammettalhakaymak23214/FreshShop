@@ -296,6 +296,26 @@
                 }
             });
         });
+
+
+
+        $(document).on("click", "#deleteProduct", function () {
+            var deleteProductId = $(this).val();  // Tıklanan butonun value'sunu alır
+            $.ajax({
+                url: "/delete-product",
+                method: "post",
+                datatype: "json",
+                data: { deleteProductId: deleteProductId },
+                success: function (response) {
+                    if (response.isOk) {
+
+                        alert(response.message);
+                        window.location.href = "/products";
+                    }
+                }
+            });
+        });
+
     </script>
 }
 
@@ -366,7 +386,7 @@
                                 <a href="#" class="btn btn-warning">Düzenle</a>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-danger">Sil</a>
+                                <button type="button" id="deleteProduct" value="@item.Id" class="btn btn-danger">Sil</button>
                             </td>
                         </tr>
                     }
