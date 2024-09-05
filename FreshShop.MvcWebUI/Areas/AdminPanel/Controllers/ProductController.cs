@@ -105,10 +105,30 @@ namespace FreshShop.MvcWebUI.Areas.AdminPanel.Controllers
             // DeletePhoto(deletedManager.PhotoPath);
             foreach (var photo in photosOfProduct)
             {
+                DeletePhoto(photo.PhotoPath);
                 _productPhotoBs.Delete(photo);
             }
             _productBs.Delete(deletedProduct);
             return Json(new { isOk = true, message = "Product silindi." });
+        }
+        [HttpGet]
+        public IActionResult DeletePhoto(String photoPath)
+        {
+            if (!string.IsNullOrEmpty(photoPath) && photoPath.StartsWith("/"))
+            {
+                photoPath = photoPath.TrimStart('/');
+            }
+
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", photoPath);
+
+            // Dosyanın var olup olmadığını kontrol edin
+            if (System.IO.File.Exists(filePath))
+            {
+                // Dosyayı sil
+                System.IO.File.Delete(filePath);
+                return Json(new { isOk = true, message = "Fotoğraf silindi." });
+            }
+            return Json(new { isOk = true, message = "Photo silindi." });
         }
 
     }
